@@ -8,6 +8,10 @@
     // the path option enables VScode can use intelliSense when we're importing modules using @ symbol alias.
     "paths": {
       "@/*": ["./src/*"], 
-    }
+    },
+    "jsx": "preserve"
   }
 }
+
+// TypeScript intellisense is disabled on template. To enable, configure `"jsx": "preserve"` in the `"compilerOptions"` property of tsconfig or jsconfig. 
+// To disable this prompt instead, configure `"experimentalDisableTemplateSupport": true` in `"vueCompilerOptions"` property
