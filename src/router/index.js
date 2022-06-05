@@ -14,7 +14,8 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes // JavaScript object property shorthand
+  routes, // JavaScript object property shorthand
+  linkActiveClass: 'vue-school-link-active', // default -> router-link-active
 })
 
 export default router
