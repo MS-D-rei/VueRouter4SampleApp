@@ -1,19 +1,26 @@
 <script setup>
 import { computed } from "vue";
-import { useRoute } from "vue-router";
+// import { useRoute } from "vue-router";
 import sourceData from "@/data.json";
 
-const route = useRoute(); // for getting this.$route in Composition API
+// const route = useRoute(); // for getting this.$route in Composition API
 
-const destinationId = computed(() => {
-  return parseInt(route.params.id);
+const props = defineProps({
+  id: {
+    type: Number,
+    required: true,
+  },
 });
+
+// const destinationId = computed(() => {
+//   return parseInt(route.params.id);
+// });
 
 const destination = computed(() => {
   return sourceData.destinations.find(
-    (destination) => destination.id === destinationId.value
-  )
-})
+    (destination) => destination.id === props.id
+  );
+});
 
 // Reacting to params changes
 // 1. use key attribute in router-link
