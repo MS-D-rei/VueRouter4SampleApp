@@ -14,7 +14,15 @@ const routes = [
     path: "/destination/:id/:slug",
     name: "destination.show",
     component: () => import("@/views/DestinationShow.vue"),
-    props: route => ({ id: parseInt(route.params.id) }), // return { id: parseInt(route.params.id) }
+    props: (route) => ({ ...route.params, id: parseInt(route.params.id) }), // return { id: parseInt(route.params.id) }
+  },
+  {
+    path: "/destination/:id/:slug/:experienceSlug",
+    name: "experience.show",
+    component: () => import("@/views/ExperienceShow.vue"),
+    props: (route) => ({ ...route.params, id: parseInt(route.params.id) }),
+    // prop function returns all of the props that will be passed to the component
+    // even though the slug and experience slug exist in the path, they will not make it as params to the component
   },
 ];
 

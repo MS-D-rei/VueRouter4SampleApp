@@ -61,12 +61,14 @@ const destination = computed(() => {
   <section class="experiences">
     <h2>Top Experiences in {{ destination.name }}</h2>
     <div class="cards">
-      <!-- :experience="experience" is passing props to child component -->
-      <ExperienceCard
+      <router-link
         v-for="experience in destination.experiences"
         :key="experience.slug"
-        :experience="experience"
-      />
+        :to="{ name: 'experience.show', params: { experienceSlug: experience.slug } }"
+      >
+        <!-- :experience="experience" is passing props to child component -->
+        <ExperienceCard :experience="experience" />
+      </router-link>
     </div>
   </section>
 </template>
