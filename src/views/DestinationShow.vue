@@ -14,6 +14,32 @@ const destination = computed(() => {
     (destination) => destination.id === destinationId.value
   )
 })
+
+// Reacting to params changes
+// 1. use key attribute in router-link
+// 2. use watch function
+
+// const destination = ref("");
+
+// 1. key attribute
+// async function initData() {
+//   const response = await fetch(`https://travel-dummy-api.netlify.app/${route.params.slug}`)
+//   destination.value = await response.json()
+// }
+// initData()
+// And set :key="$route.path" in router-link tag
+
+// 2. watch function
+// #FIX, can't fetch properly at the first rending.
+// watch(
+//   () => route.params,
+//   async () => {
+//     const response = await fetch(
+//       `https://travel-dummy-api.netlify.app/${route.params.slug}`
+//     );
+//     destination.value = await response.json();
+//   }
+// );
 </script>
 
 <template>
