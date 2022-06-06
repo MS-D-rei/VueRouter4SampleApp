@@ -8,6 +8,7 @@ import TheNavigationVue from './components/TheNavigation.vue';
     <!-- anchor tag also can change to the about page but refresh the page. -->
     <!-- <a href="/about">a tag for About</a> -->
     <div class="container">
+      <!-- router-view display the component corresponding the url -->
       <router-view></router-view>
     </div>
   </header>

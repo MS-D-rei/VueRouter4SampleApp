@@ -6,11 +6,11 @@ const routes = [
   { path: '/', name: 'Home', component: HomePage },
   // component: () => import('') is lazy loading routes
   // vite imports the page when we need
-  { path: '/brazil', name: 'brazil', component: () => import('@/views/BrazilPage.vue') },
-  { path: '/hawaii', name: 'hawaii', component: () => import('@/views/HawaiiPage.vue') },
-  { path: '/jamaica', name: 'jamaica', component: () => import('@/views/JamaicaPage.vue') },
-  { path: '/panama', name: 'panama', component: () => import('@/views/PanamaPage.vue') },
-  { path: '/destination/:id', name: 'destination.show', component: () => import('@/views/DestinationShow.vue') }
+  // { path: '/brazil', name: 'brazil', component: () => import('@/views/BrazilPage.vue') },
+  // { path: '/hawaii', name: 'hawaii', component: () => import('@/views/HawaiiPage.vue') },
+  // { path: '/jamaica', name: 'jamaica', component: () => import('@/views/JamaicaPage.vue') },
+  // { path: '/panama', name: 'panama', component: () => import('@/views/PanamaPage.vue') },
+  { path: '/destination/:id/:slug', name: 'destination.show', component: () => import('@/views/DestinationShow.vue') }
 ]
 
 const router = createRouter({
