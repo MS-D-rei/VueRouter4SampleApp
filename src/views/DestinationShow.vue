@@ -70,5 +70,6 @@ const destination = computed(() => {
         <ExperienceCard :experience="experience" />
       </router-link>
     </div>
+    <router-view /> <!-- <router-view></router-view> also works -->
   </section>
 </template>
