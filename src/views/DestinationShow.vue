@@ -3,6 +3,7 @@ import { computed } from "vue";
 // import { useRoute } from "vue-router";
 import sourceData from "@/data.json";
 import ExperienceCard from "@/components/ExperienceCard.vue";
+import GoBack from "/src/components/GoBack.vue";
 
 // const route = useRoute(); // for getting this.$route in Composition API
 
@@ -53,6 +54,7 @@ const destination = computed(() => {
 <template>
   <section class="destination">
     <h1>{{ destination.name }}</h1>
+    <GoBack />
     <div class="destination-details">
       <img :src="`/images/${destination.image}`" :alt="destination.name" />
       <p>{{ destination.description }}</p>
