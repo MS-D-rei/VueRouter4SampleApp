@@ -52,26 +52,30 @@ const destination = computed(() => {
 </script>
 
 <template>
-  <section class="destination">
-    <h1>{{ destination.name }}</h1>
-    <GoBack />
-    <div class="destination-details">
-      <img :src="`/images/${destination.image}`" :alt="destination.name" />
-      <p>{{ destination.description }}</p>
-    </div>
-  </section>
-  <section class="experiences">
-    <h2>Top Experiences in {{ destination.name }}</h2>
-    <div class="cards">
-      <router-link
-        v-for="experience in destination.experiences"
-        :key="experience.slug"
-        :to="{ name: 'experience.show', params: { experienceSlug: experience.slug } }"
-      >
-        <!-- :experience="experience" is passing props to child component -->
-        <ExperienceCard :experience="experience" />
-      </router-link>
-    </div>
-    <router-view /> <!-- <router-view></router-view> also works -->
-  </section>
+  <!-- For transition component to apply proper classes,
+  all pages needs to have a single root element (div is the element in this time)-->
+  <div> <!-- single root element -->
+    <section class="destination">
+      <h1>{{ destination.name }}</h1>
+      <GoBack />
+      <div class="destination-details">
+        <img :src="`/images/${destination.image}`" :alt="destination.name" />
+        <p>{{ destination.description }}</p>
+      </div>
+    </section>
+    <section class="experiences">
+      <h2>Top Experiences in {{ destination.name }}</h2>
+      <div class="cards">
+        <router-link
+          v-for="experience in destination.experiences"
+          :key="experience.slug"
+          :to="{ name: 'experience.show', params: { experienceSlug: experience.slug } }"
+        >
+          <!-- :experience="experience" is passing props to child component -->
+          <ExperienceCard :experience="experience" />
+        </router-link>
+      </div>
+      <router-view /> <!-- <router-view></router-view> also works -->
+    </section>
+  </div>
 </template>
