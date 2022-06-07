@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomePage from "@/views/HomePage.vue";
+import sourceData from "/src/data.json";
 
 // Important that makes it clear what paths routes contains.
 const routes = [
@@ -15,6 +16,20 @@ const routes = [
     name: "destination.show",
     component: () => import("@/views/DestinationShow.vue"),
     props: (route) => ({ ...route.params, id: parseInt(route.params.id) }), // return { id: parseInt(route.params.id) }
+    // beforeEnter() sets the routing configuration before entering the page
+    beforeEnter(to, from) {
+      // beforeEnter(...[to, ]) is the standard convention for unused args. Refer to 'Destructuring assignment'. beforeEnter(to) also works in this case
+      const exists = sourceData.destinations.find(
+        (destination) => destination.id === parseInt(to.params.id)
+      );
+      if (!exists)
+        return {
+          name: "NotFound",
+          params: { pathMatch: to.path.split("/").slice(1) },
+          query: to.query,
+          hash: to.hash,
+        };
+    },
     children: [
       {
         path: ":experienceSlug",
@@ -27,10 +42,10 @@ const routes = [
     ],
   },
   {
-    path: '/:pathMatch(.*)*',
-    name: 'NotFound',
+    path: "/:pathMatch(.*)*",
+    name: "NotFound",
     component: () => import("/src/views/NotFound.vue"),
-  }
+  },
 ];
 
 const router = createRouter({
