@@ -20,9 +20,17 @@ const routes = [
     },
   },
   {
-    path: '/login',
-    name: 'login',
-    component: () => import('/src/views/LoginPage.vue')
+    path: "/login",
+    name: "login",
+    component: () => import("/src/views/LoginPage.vue"),
+  },
+  {
+    path: "/invoices",
+    name: "invoices",
+    component: () => import("@/views/InvoicesPage.vue"),
+    meta: {
+      requireAuth: true,
+    },
   },
   {
     path: "/destination/:id/:slug",
@@ -81,9 +89,9 @@ router.beforeEach((to, from) => {
   if (to.meta.requireAuth) {
     // need to login if not already logged in
     if (to.meta.requireAuth && !window.user) {
-      return { name: 'login' }
+      return { name: "login", query: { redirect: to.fullPath } };
     }
   }
-})
+});
 
 export default router;
