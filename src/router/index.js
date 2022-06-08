@@ -12,6 +12,19 @@ const routes = [
   // { path: '/jamaica', name: 'jamaica', component: () => import('@/views/JamaicaPage.vue') },
   // { path: '/panama', name: 'panama', component: () => import('@/views/PanamaPage.vue') },
   {
+    path: "/protected",
+    name: "protected",
+    component: () => import("/src/views/ProtectedPage.vue"),
+    meta: {
+      requireAuth: true,
+    },
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('/src/views/LoginPage.vue')
+  },
+  {
     path: "/destination/:id/:slug",
     name: "destination.show",
     component: () => import("@/views/DestinationShow.vue"),
@@ -52,7 +65,8 @@ const router = createRouter({
   history: createWebHistory(),
   routes, // JavaScript object property shorthand
   linkActiveClass: "vue-school-link-active", // default -> router-link-active
-  scrollBehavior(...[, , savedPosition]) { // scrollBehavior(to, from savedPosition)
+  scrollBehavior(...[, , savedPosition]) {
+    // scrollBehavior(to, from savedPosition)
     return (
       savedPosition ||
       new Promise((resolve) => {
@@ -61,5 +75,15 @@ const router = createRouter({
     );
   },
 });
+
+// Global navigation guard
+router.beforeEach((to, from) => {
+  if (to.meta.requireAuth) {
+    // need to login if not already logged in
+    if (to.meta.requireAuth && !window.user) {
+      return { name: 'login' }
+    }
+  }
+})
 
 export default router;
